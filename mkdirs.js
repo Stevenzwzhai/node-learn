@@ -22,7 +22,7 @@ function mkdirs(pathname, callback){
 		let pre = '';
 		folders.forEach(folder => {
 			try{
-				fs.stat(path.join(root, pre, folder));
+				fs.statSync(path.join(root, pre, folder));
 				fs.mkdirSync(path.join(root, pre, folder));
 			}catch(error){
 			
