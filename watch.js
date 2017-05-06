@@ -14,7 +14,7 @@ let template = `
 	<tyle>{{{styles}}}</style>
 </head>
 <body>
-	<div>{{{content}}}}</div>
+	<div class="markdown">{{{content}}}}</div>
 </body>
 </html>
 `;
