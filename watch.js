@@ -11,6 +11,7 @@ let template = `
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<tyle>{{{styles}}}</style>
 </head>
 <body>
 	<div>{{{content}}}}</div>
@@ -31,7 +32,12 @@ fs.watchFile(target, (curr, prev) => {
 			throw err;
 		}
 		let html = marked(data);
-		html = template.replace('{{{content}}}', html);
+		fs.readFile(path.join(__dirname,'./mark.css'), 'utf8', (err, css) => {
+			if(err){
+				throw err;
+			}
+			html = template.replace('{{{content}}}', html).replace('{{{styles}}}', css);
+		})
 		fs.writeFile(target.replace(path.extname(target), '.html'), html, 'utf8')
 	})
 })
